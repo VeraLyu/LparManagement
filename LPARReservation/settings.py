@@ -22,7 +22,7 @@ PROJECT_DIR = Path(__file__).parent
 SECRET_KEY = 'yj+!x(y&w)by=t%cq)xoy(pl7n-q^57(qr*hr!pr=d*8ezvx5r'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 TEMPLATE_DEBUG = DEBUG
 
@@ -49,6 +49,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_openid_auth',
     'LPARReservation',
 )
 
@@ -102,3 +103,17 @@ MEDIA_ROOT = PROJECT_DIR.parent.child('media')
 MEDIA_URL = '/media/'
 
 ADMIN_MEDIA_PREFIX = '/static/admin'
+
+AUTHENTICATION_BACKENDS = (
+    'django_openid_auth.auth.OpenIDBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+OPENID_CREATE_USERS = True
+OPENID_UPDATE_DETAILS_FROM_SREG = True
+LOGIN_URL = '/openid/login/'
+LOGIN_REDIRECT_URL = '/'
+
+OPENID_SSO_SERVER_URL = "https://w3-03.sso.ibm.com/FIM/openidsso"
+OPENID_TRUST_ROOT = "https://9.115.122.85"
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'

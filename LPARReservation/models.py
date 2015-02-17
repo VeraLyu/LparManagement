@@ -5,6 +5,7 @@ class LPAR(models.Model):
     ip = models.IPAddressField(blank=False)
     available = models.BooleanField(default=1)
     reservation_time = models.DateTimeField(auto_now_add=True)
+    rsv_person = models.CharField(max_length=100, null=True, blank=True)
 
     class Meta:
         ordering = ('name',)

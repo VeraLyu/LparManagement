@@ -12,23 +12,57 @@
       <div class="container-fluid">
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
           <a class="navbar-brand" href={% url 'home' %}>LPAR RESERVATION</a>
+{% if not is_login %}
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <form action="/openid/login/" method="GET">
+                <input type="hidden" name="openid_identifier" value="https://w3-03.sso.ibm.com/FIM/openidsso">
+                <button type="submit" class="btn btn-primary" style="margin-right: 30px; margin-top:7px;margin-bottom:5px">Sign In</button>
+              </form> 
+            </li>
+          </ul>
+{% endif %}
         </nav>
       </div>
     </header>
     <main>
       <div class="container">
-        <table class="table table-striped">
-          <h4 align="center">LPAR RESERVATION</h4>
+        <table class="table table-striped" style="text-align:center; vertical-align:middle">
+          <h3 align="center">LPAR RESERVATION</h3>
           <tr>
-            <th>Name</th>
-            <th>IP</th>
-            <th>Available</th>
-          </tr>
+            <th style="text-align:center; vertical-align:middle">Name</th>
+            <th style="text-align:center; vertical-align:middle">IP</th>
+            <th style="text-align:center; vertical-align:middle">Available</th>
+            <th style="text-align:center; vertical-align:middle">Reserved-by</th>
+            <th style="text-align:center; vertical-align:middle">Time Left</th>
+{% if is_login %}
+            <th style="text-align:center; vertical-align:middle">Action</th>
+{% endif %}
+            </tr>
 {% for lpar in lpars %}
           <tr>
-            <td>{{ lpar.name }}</td>
-            <td>{{ lpar.ip }}</td>
-            <td>{%if lpar.available %}yes{% else %}no{% endif %}</td>
+            <td><i>{{ lpar.name }}</i></td>
+            <td><i>{{ lpar.ip }}</i></td>
+            <td><i>{%if lpar.available %}Yes{% else %}No{% endif %}</i></td>
+            <td><i>{% if lpar.rsv_person %}{{ lpar.rsv_person}}{% else %} N/A {% endif %}</i></td>
+            <td><i>{% if lpar.rsv_person %}{{ lpar.reservation_time}}{% else %} N/A {% endif %}</i></td>
+{% if is_login %}
+            <td>
+{% ifequal lpar.rsv_person user_name %}
+              <form action="/cancel/" method="GET">
+                <input type="hidden" name="lparid" value="{{ lpar.id }}">
+                <button type="submit" class="btn btn-primary"
+                style="margin-right: 30px; margin-top:7px;margin-bottom:5px">Cancel</button>
+              </form> 
+{% endifequal %}
+{% if lpar.available %}
+              <form action="/reserve/" method="GET">
+                <input type="hidden" name="lparid" value="{{ lpar.id }}">
+                <button type="submit" class="btn btn-primary" style="margin-right: 30px; margin-top:7px;margin-bottom:5px">Reserve</button>
+              </form> 
+            </td>
+{% endif %}
+{% endif %}
           </tr>
 {% endfor %}
         </table>
@@ -36,5 +70,14 @@
     </main>
   </body>
   <footer>
+  <div class="navbar navbar-fixed-bottom">
+    <nav class="navbar navbar-default">
+      <div class="navbar-inner navbar-content-center">
+        <p class="text-muted credit" style="padding: 3px;">
+          <center>CSTL KVM TEAM @IBM</center>
+        </p>
+      </div>
+    </nav>
+  </div>
   </footer>
 </html>
