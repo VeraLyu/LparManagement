@@ -6,8 +6,9 @@
     <title>LPAR RESERVATION</title>
     <link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ STATIC_URL }}css/bootcamp.css" rel="stylesheet">
+    <script src="{{ STATIC_URL }}js/countdown.js"></script>
   </head>
-  <body style="font-family: Microsoft Yahei, sans-serif">
+  <body style="font-family: Microsoft Yahei, sans-serif" onload='countdown()'>
     <header id="header-p-beta2">
       <div class="container-fluid">
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -45,7 +46,7 @@
             <td><i>{{ lpar.ip }}</i></td>
             <td><i>{%if lpar.available %}Yes{% else %}No{% endif %}</i></td>
             <td><i>{% if lpar.rsv_person %}{{ lpar.rsv_person}}{% else %} N/A {% endif %}</i></td>
-            <td><i>{% if lpar.rsv_person %}{{ lpar.reservation_time}}{% else %} N/A {% endif %}</i></td>
+            <td><i>{% if lpar.rsv_person %}<span id='lpar' value='{{ lpar.reservation_time }}'></span>{% else %} N/A {% endif %}</i></td>
 {% if is_login %}
             <td>
 {% ifequal lpar.rsv_person user_name %}
