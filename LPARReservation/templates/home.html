@@ -46,7 +46,7 @@
             <td><i>{{ lpar.ip }}</i></td>
             <td><i>{%if lpar.available %}Yes{% else %}No{% endif %}</i></td>
             <td><i>{% if lpar.rsv_person %}{{ lpar.rsv_person}}{% else %} N/A {% endif %}</i></td>
-            <td><i>{% if lpar.rsv_person %}<span id='lpar' value='{{ lpar.reservation_time }}'></span>{% else %} N/A {% endif %}</i></td>
+            <td><i>{% if lpar.rsv_person %}<span id='{{ lpar.name }}' value='{{ lpar.reservation_time }}'></span>{% else %} N/A {% endif %}</i></td>
 {% if is_login %}
             <td>
 {% ifequal lpar.rsv_person user_name %}
