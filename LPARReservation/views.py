@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
 from django.contrib.auth.decorators import login_required
 from LPARReservation.models import LPAR
-import time
+import time, thread
 
 def home(request):
     is_login = False
@@ -14,6 +14,15 @@ def home(request):
     lpars = LPAR.objects.filter()
     return render(request, 'home.html', {'lpars': lpars, 'is_login': is_login, \
             'user_name': user_name})
+
+def timer(lpar):
+    #time.sleep(3600*4)
+    time.sleep(3600*4)
+    cur_lpar = LPAR.objects.get(name=lpar.name)
+    if cur_lpar and not cur_lpar.available and cur_lpar.rsv_person == lpar.rsv_person:
+        cur_lpar.available = True
+        cur_lpar.rsv_person = None
+        cur_lpar.save()   
 
 @login_required
 def reserve(request):
@@ -27,6 +36,7 @@ def reserve(request):
         lpar.rsv_person = request.user.email
         lpar.reservation_time = time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))
         lpar.save()
+        thread.start_new_thread(timer, (lpar,))
     lpars = LPAR.objects.filter()
     return render(request, 'home.html', {'lpars': lpars, 'is_login': is_login, \
             'user_name': user_name})
