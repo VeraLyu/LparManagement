@@ -40,4 +40,5 @@ function countdown() {
         if (seconds >= 0)
             show_time(sp, seconds);
     }
+    window.setTimeout(function (){countdown();}, 500);
 }
