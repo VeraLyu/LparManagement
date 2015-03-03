@@ -35,7 +35,7 @@ function countdown() {
         var sp = document.getElementById(lpars[i]);
         if(!sp)
             continue;
-        tm = sp.innerHTML.split(':');
+        tm = sp.getAttribute('value').split(':');
         seconds = get_lefttime(tm);
         if (seconds >= 0)
             show_time(sp, seconds);
