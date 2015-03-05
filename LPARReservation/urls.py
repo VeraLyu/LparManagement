@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.contrib.auth.views import logout
 from django.conf import settings
 
 admin.autodiscover()
@@ -10,6 +11,7 @@ urlpatterns = patterns('',
     url(r'^$', 'LPARReservation.views.home', name='home'),
     url(r'^reserve/$', 'LPARReservation.views.reserve', name='reserve'),
     url(r'^cancel/$', 'LPARReservation.views.cancel', name='cancel'),
+    url(r'^logout/', 'django.contrib.auth.views.logout', {'next_page': '/'}, name='logout'),
     # url(r'^blog/', include('blog.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^openid/', include('django_openid_auth.urls')),

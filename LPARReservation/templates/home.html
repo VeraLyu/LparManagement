@@ -25,6 +25,16 @@
               </form> 
             </li>
           </ul>
+{% else %}
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <form action="/logout/" method="GET">
+                <input type="hidden" name="openid_identifier" value="https://w3-03.sso.ibm.com/FIM/openidsso">
+                <button type="submit" class="btn btn-primary"
+                style="margin-right: 30px; margin-top:7px;margin-bottom:5px">Sign Out</button>
+              </form> 
+            </li>
+          </ul>
 {% endif %}
         </nav>
       </div>
