@@ -3,12 +3,6 @@ body {
   padding-top: 70px;
 }
 
-header .navbar-brand {
-  font-size: 1.4em;
-  font-weight: 200;
-  font-family: "Audiowide", cursive;
-}
-
 main .container {
   margin-bottom: 2em;
   border: 1px solid #ddd;
