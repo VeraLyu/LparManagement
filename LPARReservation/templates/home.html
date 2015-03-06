@@ -66,13 +66,16 @@
               <form action="/cancel/" method="GET">
                 <input type="hidden" name="lparid" value="{{ lpar.id }}">
                 <button type="submit" class="btn btn-primary"
-                style="margin-right: 30px; margin-top:7px;margin-bottom:5px">Cancel</button>
+                style="margin-right: 30px; margin-top:7px;margin-bottom:5px"
+                data-toggle="tooltip" data-placement="bottom" title="Release this LPAR">Cancel</button>
               </form> 
 {% endifequal %}
 {% if lpar.available %}
               <form action="/reserve/" method="GET">
                 <input type="hidden" name="lparid" value="{{ lpar.id }}">
-                <button type="submit" class="btn btn-primary" style="margin-right: 30px; margin-top:7px;margin-bottom:5px">Reserve</button>
+                <button type="submit" class="btn btn-primary"
+                style="margin-right: 30px; margin-top:7px;margin-bottom:5px"
+                data-toggle="tooltip" data-placement="bottom" title="LPAR will be released after 4 hours from this reservation">Reserve</button>
               </form> 
             </td>
 {% endif %}
