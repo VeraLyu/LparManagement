@@ -60,7 +60,7 @@
 	  </ul>
       <div class="tab-content">
         <div class="tab-pane active" id="panel-206449">
-          <table class="table table-striped table-hover"
+          <table class="table table-striped"
           style="text-align:center; vertical-align:middle; margin-top: 40px;">
             <tr>
               <th style="text-align:center; vertical-align:middle">Name</th>
@@ -100,9 +100,44 @@
           </table>
 	    </div>
         <div class="tab-pane" id="panel-983158">
-        	<p>
-        		Developping...
-        	</p>
+          <table class="table table-striped" style="text-align:center; vertical-align:middle; margin-top: 40px;">
+            <tr>
+              <th style="text-align:center; vertical-align:middle">Name</th>
+              <th style="text-align:center; vertical-align:middle">IP</th>
+              <th style="text-align:center; vertical-align:middle">IMM IP</th>
+              <th style="text-align:center; vertical-align:middle">Available</th>
+              <th style="text-align:center; vertical-align:middle">Reserved-by</th>
+{% if is_login %}
+              <th style="text-align:center; vertical-align:middle">Action</th>
+{% endif %}
+              </tr>
+{% for server in servers %}
+              <tr style="background-color: #4BA575">
+              <td><i>{{ server.name }}</i></td>
+              <td><i>{{ server.ip }}</i></td>
+              <td><i>{{ server.imm_ip }}</i></td>
+              <td><i>{%if server.available %}Yes{% else %}No{% endif %}</i></td>
+              <td><i>{% if server.rsv_person %}{{ server.rsv_person}}{% else %} N/A {% endif %}</i></td>
+{% if is_login %}
+              <td>
+{% ifequal server.rsv_person user_name %}
+                <form action="/ccl/" method="GET">
+                  <input type="hidden" name="serverid" value="{{ server.id }}">
+                  <button type="submit" class="btn btn-primary btn-xs"
+                      data-toggle="tooltip" data-placement="bottom" title="Release this server">Cancel</button>
+                </form> 
+{% endifequal %}
+{% if server.available %}
+                <form action="/rsv/" method="GET">
+                  <input type="hidden" name="serverid" value="{{ server.id }}">
+                  <button type="submit" class="btn btn-primary btn-xs" data-toggle="tooltip" data-placement="bottom" title="Server will be released after 4 hours from this reservation on">Reserve</button>
+                </form> 
+              </td>
+{% endif %}
+{% endif %}
+            </tr>
+{% endfor %}
+          </table>
         </div>
       </div>
     </div>

@@ -22,7 +22,7 @@ PROJECT_DIR = Path(__file__).parent
 SECRET_KEY = 'yj+!x(y&w)by=t%cq)xoy(pl7n-q^57(qr*hr!pr=d*8ezvx5r'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 TEMPLATE_DEBUG = DEBUG
 
