@@ -10,6 +10,14 @@
     <script type="text/javascript">
         window.onload = function (){countdown();}
     </script>
+    <!--[if lt IE 9]>
+        <script src="{{ STATIC_URL }}js/html5shiv.js"></script>
+        <script src="{{ STATIC_URL }}js/respond.min.js"></script>
+    <![endif]-->
+    <script src="{{ STATIC_URL }}js/jquery-2.1.1.min.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+    <script src="{{ STATIC_URL }}js/bootcamp.js"></script>
+
   </head>
   <body style="font-family: Microsoft Yahei, sans-serif">
     <header id="header-p-beta2">
@@ -39,60 +47,80 @@
         </nav>
       </div>
     </header>
-    <main>
-      <div class="container">
-        <table class="table table-striped" style="text-align:center; vertical-align:middle">
-          <h3 align="center">LPAR RESERVATION</h3>
-          <tr>
-            <th style="text-align:center; vertical-align:middle">Name</th>
-            <th style="text-align:center; vertical-align:middle">IP</th>
-            <th style="text-align:center; vertical-align:middle">Available</th>
-            <th style="text-align:center; vertical-align:middle">Reserved-by</th>
-            <th style="text-align:center; vertical-align:middle">Time Left</th>
+<main>
+  <div class="container">
+    <div class="tabbable" id="tabs-142563">
+	  <ul class="nav nav-tabs">
+	  	<li class="active">
+	  		<a href="#panel-206449" data-toggle="tab">LPARs</a>
+	  	</li>
+	  	<li>
+	  		<a href="#panel-983158" data-toggle="tab">Lab Servers</a>
+	  	</li>
+	  </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="panel-206449">
+          <table class="table table-striped" style="text-align:center; vertical-align:middle">
+            <h3 align="center">LPAR RESERVATION</h3>
+            <tr>
+              <th style="text-align:center; vertical-align:middle">Name</th>
+              <th style="text-align:center; vertical-align:middle">IP</th>
+              <th style="text-align:center; vertical-align:middle">Available</th>
+              <th style="text-align:center; vertical-align:middle">Reserved-by</th>
+              <th style="text-align:center; vertical-align:middle">Time Left</th>
 {% if is_login %}
-            <th style="text-align:center; vertical-align:middle">Action</th>
+              <th style="text-align:center; vertical-align:middle">Action</th>
 {% endif %}
-            </tr>
+              </tr>
 {% for lpar in lpars %}
-          <tr>
-            <td><i>{{ lpar.name }}</i></td>
-            <td><i>{{ lpar.ip }}</i></td>
-            <td><i>{%if lpar.available %}Yes{% else %}No{% endif %}</i></td>
-            <td><i>{% if lpar.rsv_person %}{{ lpar.rsv_person}}{% else %} N/A {% endif %}</i></td>
-            <td><i>{% if lpar.rsv_person %}<div id='{{ lpar.name }}'value='{{ lpar.reservation_time | date:"H:i:s" }}'></div>{% else %} N/A {% endif %}</i></td>
+            <tr>
+              <td><i>{{ lpar.name }}</i></td>
+              <td><i>{{ lpar.ip }}</i></td>
+              <td><i>{%if lpar.available %}Yes{% else %}No{% endif %}</i></td>
+              <td><i>{% if lpar.rsv_person %}{{ lpar.rsv_person}}{% else %} N/A {% endif %}</i></td>
+              <td><i>{% if lpar.rsv_person %}<div id='{{ lpar.name }}'value='{{ lpar.reservation_time | date:"H:i:s" }}'></div>{% else %} N/A {% endif %}</i></td>
 {% if is_login %}
-            <td>
+              <td>
 {% ifequal lpar.rsv_person user_name %}
-              <form action="/cancel/" method="GET">
-                <input type="hidden" name="lparid" value="{{ lpar.id }}">
-                <button type="submit" class="btn btn-primary"
-                style="margin-right: 30px; margin-top:7px;margin-bottom:5px"
-                data-toggle="tooltip" data-placement="bottom" title="Release this LPAR">Cancel</button>
-              </form> 
+                <form action="/cancel/" method="GET">
+                  <input type="hidden" name="lparid" value="{{ lpar.id }}">
+                  <button type="submit" class="btn btn-primary"
+                  style="margin-right: 30px; margin-top:7px;margin-bottom:5px"
+                  data-toggle="tooltip" data-placement="bottom" title="Release this LPAR">Cancel</button>
+                </form> 
 {% endifequal %}
 {% if lpar.available %}
-              <form action="/reserve/" method="GET">
-                <input type="hidden" name="lparid" value="{{ lpar.id }}">
-                <button type="submit" class="btn btn-primary"
-                style="margin-right: 30px; margin-top:7px;margin-bottom:5px"
-                data-toggle="tooltip" data-placement="bottom" title="LPAR will be released after 4 hours from this reservation on">Reserve</button>
-              </form> 
-            </td>
+                <form action="/reserve/" method="GET">
+                  <input type="hidden" name="lparid" value="{{ lpar.id }}">
+                  <button type="submit" class="btn btn-primary"
+                  style="margin-right: 30px; margin-top:7px;margin-bottom:5px"
+                  data-toggle="tooltip" data-placement="bottom" title="LPAR will be released after 4 hours from this reservation on">Reserve</button>
+                </form> 
+              </td>
 {% endif %}
 {% endif %}
-          </tr>
+            </tr>
 {% endfor %}
-        </table>
+          </table>
+	    </div>
+        <div class="tab-pane" id="panel-983158">
+        	<p>
+        		Developping...
+        	</p>
+        </div>
       </div>
-    </main>
-  </body>
-  <div id="footer">
-    <div class="navbar-content-center navbar-fixed-bottom" style="margin-bottom: -20px">
-      <nav class="navbar navbar-default">
-        <p class="text-muted credit" style="padding: 3px; text-color: 0xFFFFFF;">
-          <center>CSTL KVM TEAM @IBM</center>
-        </p>
-     </nav>
     </div>
   </div>
+</main>
+
+<div id="footer">
+  <div class="navbar-content-center navbar-fixed-bottom" style="margin-bottom: -20px">
+    <nav class="navbar navbar-default">
+      <p class="text-muted credit" style="padding: 3px; text-color: 0xFFFFFF;">
+        <center>CSTL KVM TEAM @IBM</center>
+      </p>
+   </nav>
+  </div>
+</div>
+  </body>
 </html>
