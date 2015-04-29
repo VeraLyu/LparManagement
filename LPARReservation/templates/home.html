@@ -51,15 +51,27 @@
   <div class="container">
     <div class="tabbable" id="tabs-142563">
 	  <ul class="nav nav-tabs">
+{% if not active %}
 	  	<li class="active">
+{% else %}
+        <li>
+{% endif %}
 	  		<a href="#panel-206449" data-toggle="tab">LPARs</a>
 	  	</li>
-	  	<li>
+{% if active %}
+	  	<li class="active">
+{% else %}
+        <li>
+{% endif %}
 	  		<a href="#panel-983158" data-toggle="tab">Lab Servers</a>
 	  	</li>
 	  </ul>
       <div class="tab-content">
+{% if not active %}
         <div class="tab-pane active" id="panel-206449">
+{% else %}
+        <div class="tab-pane" id="panel-206449">
+{% endif %}
           <table class="table table-striped"
           style="text-align:center; vertical-align:middle; margin-top: 40px;">
             <tr>
@@ -99,7 +111,11 @@
 {% endfor %}
           </table>
 	    </div>
+{% if not active %}
         <div class="tab-pane" id="panel-983158">
+{% else %}
+        <div class="tab-pane active" id="panel-983158">
+{% endif %}
           <table class="table table-striped" style="text-align:center; vertical-align:middle; margin-top: 40px;">
             <tr>
               <th style="text-align:center; vertical-align:middle">Name</th>

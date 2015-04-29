@@ -56,7 +56,7 @@ def rsv(request):
     servers = Server.objects.filter()
     lpars = LPAR.objects.filter()
     return render(request, 'home.html', {'lpars': lpars, 'is_login': is_login, \
-            'user_name': user_name, 'servers': servers})
+            'user_name': user_name, 'servers': servers, 'active': 'label2'})
 
 @login_required
 def cancel(request):
@@ -87,4 +87,4 @@ def ccl(request):
     lpars = LPAR.objects.filter()
     servers = Server.objects.filter()
     return render(request, 'home.html', {'lpars': lpars, 'is_login': is_login, \
-            'user_name': user_name, 'servers': servers})
+            'user_name': user_name, 'servers': servers, 'active': 'label2'})
