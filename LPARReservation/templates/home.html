@@ -85,7 +85,11 @@
 {% endif %}
               </tr>
 {% for lpar in lpars %}
-            <tr style="background-color: #4BA575">
+{% if lpar.available %}
+            <tr style="background-color: #DFF0D8">
+{% else %}
+            <tr style="background-color: #FCF8E3">
+{% endif %}
               <td><i>{{ lpar.name }}</i></td>
               <td><i>{{ lpar.ip }}</i></td>
               <td><i>{%if lpar.available %}Yes{% else %}No{% endif %}</i></td>
@@ -128,7 +132,11 @@
 {% endif %}
               </tr>
 {% for server in servers %}
-              <tr style="background-color: #4BA575">
+{% if server.available %}
+            <tr style="background-color: #DFF0D8">
+{% else %}
+            <tr style="background-color: #FCF8E3">
+{% endif %}
               <td><i>{{ server.name }}</i></td>
               <td><i>{{ server.ip }}</i></td>
               <td><i>{{ server.imm_ip }}</i></td>
