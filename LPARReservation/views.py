@@ -67,6 +67,7 @@ def cancel(request):
         lpar = LPAR.objects.get(id=lpar_id)
     if lpar and lpar.available == False:
         lpar.available = True
+        lpar.last_rsv_person = lpar.rsv_person
         lpar.rsv_person = None
         lpar.save()
     lpars = LPAR.objects.filter()

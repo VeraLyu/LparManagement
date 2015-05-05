@@ -78,6 +78,7 @@
               <th style="text-align:center; vertical-align:middle">Name</th>
               <th style="text-align:center; vertical-align:middle">IP</th>
               <th style="text-align:center; vertical-align:middle">Available</th>
+              <th style="text-align:center; vertical-align:middle">Previous User</th>
               <th style="text-align:center; vertical-align:middle">Reserved-by</th>
               <th style="text-align:center; vertical-align:middle">Time Left</th>
 {% if is_login %}
@@ -93,6 +94,11 @@
               <td><i>{{ lpar.name }}</i></td>
               <td><i>{{ lpar.ip }}</i></td>
               <td><i>{%if lpar.available %}Yes{% else %}No{% endif %}</i></td>
+{% if lpar.last_rsv_person %}
+              <td><i>{{ lpar.last_rsv_person }}</i></td>
+{% else %}
+              <td><i>N/A</i></td>
+{% endif %}
               <td><i>{% if lpar.rsv_person %}{{ lpar.rsv_person}}{% else %} N/A {% endif %}</i></td>
               <td><i>{% if lpar.rsv_person %}<div id='{{ lpar.name }}'value='{{ lpar.reservation_time | date:"H:i:s" }}'></div>{% else %} N/A {% endif %}</i></td>
 {% if is_login %}
