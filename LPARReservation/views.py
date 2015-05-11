@@ -39,8 +39,7 @@ def reserve(request):
         lpar.save()
         thread.start_new_thread(timer, (lpar,))
     lpars = LPAR.objects.filter()
-    return render(request, 'home.html', {'lpars': lpars, 'is_login': is_login, \
-            'user_name': user_name})
+    return redirect('/')
 
 @login_required
 def rsv(request):
@@ -71,8 +70,7 @@ def cancel(request):
         lpar.rsv_person = None
         lpar.save()
     lpars = LPAR.objects.filter()
-    return render(request, 'home.html', {'lpars': lpars, 'is_login': is_login, \
-            'user_name': user_name})
+    return redirect('/')
 
 @login_required
 def ccl(request):
