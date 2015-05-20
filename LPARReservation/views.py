@@ -64,7 +64,7 @@ def cancel(request):
     lpar_id = request.REQUEST.get('lparid')
     if lpar_id:
         lpar = LPAR.objects.get(id=lpar_id)
-    if lpar and lpar.available == False:
+    if lpar and lpar.available == False and lpar.rsv_person == user_name:
         lpar.available = True
         lpar.last_rsv_person = lpar.rsv_person
         lpar.rsv_person = None
@@ -79,7 +79,7 @@ def ccl(request):
     server_id = request.REQUEST.get('serverid')
     if server_id:
         server = Server.objects.get(id=server_id)
-    if server and server.available == False:
+    if server and server.available == False and server.rsv_person == user_name:
         server.available = True
         server.rsv_person = None
         server.save()

@@ -22,8 +22,7 @@ PROJECT_DIR = Path(__file__).parent
 SECRET_KEY = 'yj+!x(y&w)by=t%cq)xoy(pl7n-q^57(qr*hr!pr=d*8ezvx5r'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = ['*']
@@ -115,5 +114,5 @@ LOGIN_URL = '/openid/login/'
 LOGIN_REDIRECT_URL = '/'
 
 OPENID_SSO_SERVER_URL = "https://w3-03.sso.ibm.com/FIM/openidsso"
-OPENID_TRUST_ROOT = "https://9.115.122.85"
+OPENID_TRUST_ROOT = "https://9.181.129.109"
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'

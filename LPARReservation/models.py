@@ -4,7 +4,7 @@ class LPAR(models.Model):
     name = models.CharField(max_length=15, null=True, blank=False)
     ip = models.IPAddressField(blank=False)
     available = models.BooleanField(default=1)
-    reservation_time = models.DateTimeField(auto_now_add=True)
+    reservation_time = models.DateTimeField()
     rsv_person = models.CharField(max_length=100, null=True, blank=True)
     last_rsv_person = models.CharField(max_length=100, null=True, blank=True)
 
