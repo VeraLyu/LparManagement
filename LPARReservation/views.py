@@ -23,7 +23,7 @@ def timer(lpar):
     if cur_lpar and not cur_lpar.available and cur_lpar.rsv_person == lpar.rsv_person:
         cur_lpar.available = True
         cur_lpar.rsv_person = None
-        cur_lpar.save()   
+        cur_lpar.save() 
 
 @login_required
 def reserve(request):

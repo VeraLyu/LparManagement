@@ -1,5 +1,5 @@
 function get_lefttime(tm) {
-    var rsv_hours = parseInt(tm[0]) + 4;
+    var rsv_hours = parseInt(tm[0]) + 4;      
     var rsv_minutes = parseInt(tm[1]);
     var rsv_seconds = parseInt(tm[2]);
     var date = new Date();
@@ -39,6 +39,8 @@ function countdown() {
         seconds = get_lefttime(tm);
         if (seconds >= 0)
             show_time(sp, seconds);
+        else
+            window.location.reload(); 
     }
     window.setTimeout(function (){countdown();}, 500);
 }
