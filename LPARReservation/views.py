@@ -17,7 +17,7 @@ def home(request):
         t = str(lpar.reservation_time)[:19]
         t1 = time.time() - time.mktime(time.strptime(str(t),'%Y-%m-%d %H:%M:%S')) - 3600 * 8
         if (t1 >= 3600*4):
-            lpar.available = true
+            lpar.available = True
             lpar.last_rsv_person = lpar.rsv_person
             lpar.rsv_person = None
             lpar.save()
