@@ -36,6 +36,8 @@ function countdown() {
         if(!sp)
             continue;
         tm = sp.getAttribute('value').split(':');
+        if(!tm)
+            continue;
         seconds = get_lefttime(tm);
         if (seconds >= 0)
             show_time(sp, seconds);

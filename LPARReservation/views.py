@@ -13,6 +13,15 @@ def home(request):
         user_name = request.user.email
 
     lpars = LPAR.objects.filter()
+    for lpar in lpars:
+        t = str(lpar.reservation_time)[:19]
+        t1 = time.time() - time.mktime(time.strptime(str(t),'%Y-%m-%d %H:%M:%S')) - 3600 * 8
+        if (t1 >= 3600*4):
+            lpar.available = true
+            lpar.last_rsv_person = lpar.rsv_person
+            lpar.rsv_person = None
+            lpar.save()
+    lpars = LPAR.objects.filter()
     servers = Server.objects.filter()
     return render(request, 'home.html', {'lpars': lpars, 'is_login': is_login, \
             'user_name': user_name, 'servers': servers})
