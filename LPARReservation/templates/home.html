@@ -111,13 +111,13 @@
 {% ifequal lpar.rsv_person user_name %}
                 <form action="/cancel/" method="GET">
                   <input type="hidden" name="lparid" value="{{ lpar.id }}">
-                  <button type="submit" class="btn btn-primary btn-xs" data-toggle="tooltip" data-placement="bottom" title="Release this LPAR">Cancel</button>
+                  <button type="submit" class="btn btn-warning btn-xs" data-toggle="tooltip" data-placement="bottom" title="Release this LPAR">Cancel</button>
                 </form> 
 {% endifequal %}
 {% if lpar.available %}
                 <form action="/reserve/" method="GET">
                   <input type="hidden" name="lparid" value="{{ lpar.id }}">
-                  <button type="submit" class="btn btn-primary btn-xs" data-toggle="tooltip" data-placement="bottom" title="LPAR will be released after 4 hours from this reservation on">Reserve</button>
+                  <button type="submit" class="btn btn-success btn-xs" data-toggle="tooltip" data-placement="bottom" title="LPAR will be released after 4 hours from this reservation on">Reserve</button>
                 </form> 
               </td>
 {% endif %}
@@ -158,14 +158,14 @@
 {% ifequal server.rsv_person user_name %}
                 <form action="/ccl/" method="GET">
                   <input type="hidden" name="serverid" value="{{ server.id }}">
-                  <button type="submit" class="btn btn-primary btn-xs"
+                  <button type="submit" class="btn btn-warning btn-xs"
                       data-toggle="tooltip" data-placement="bottom" title="Release this server">Cancel</button>
                 </form> 
 {% endifequal %}
 {% if server.available %}
                 <form action="/rsv/" method="GET">
                   <input type="hidden" name="serverid" value="{{ server.id }}">
-                  <button type="submit" class="btn btn-primary btn-xs" data-toggle="tooltip" data-placement="bottom" title="Server will be released after 4 hours from this reservation on">Reserve</button>
+                  <button type="submit" class="btn btn-success btn-xs" data-toggle="tooltip" data-placement="bottom" title="Server will be released after 4 hours from this reservation on">Reserve</button>
                 </form> 
               </td>
 {% endif %}
