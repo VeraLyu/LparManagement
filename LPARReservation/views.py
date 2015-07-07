@@ -26,14 +26,6 @@ def home(request):
     return render(request, 'home.html', {'lpars': lpars, 'is_login': is_login, \
             'user_name': user_name, 'servers': servers})
 
-def timer(lpar):
-    time.sleep(3600*4)
-    cur_lpar = LPAR.objects.get(name=lpar.name)
-    if cur_lpar and not cur_lpar.available and cur_lpar.rsv_person == lpar.rsv_person:
-        cur_lpar.available = True
-        cur_lpar.rsv_person = None
-        cur_lpar.save() 
-
 @login_required
 def reserve(request):
     is_login = True
@@ -46,7 +38,6 @@ def reserve(request):
         lpar.rsv_person = request.user.email
         lpar.reservation_time = time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))
         lpar.save()
-        thread.start_new_thread(timer, (lpar,))
     lpars = LPAR.objects.filter()
     return redirect('/')
 

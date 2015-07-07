@@ -24,12 +24,20 @@
       <div class="container-fluid">
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
           <a class="navbar-brand" href={% url 'home' %}>LPAR RESERVATION</a>
+          <div class="collapse navbar-collapse" id="menu">
+            <ul class="nav navbar-nav">
+              <li><a href="http://w3.ibm.com" target="_blank">W3</a></li>
+              <li><a href="https://w3-connections.ibm.com/wikis/home?lang=zh-cn#!/wiki/KVM%20China%20Team%20Wiki/page/zFrobisher%20Status%20Update" target="_blank">Weekly Report</a></li>
+              <li><a href="https://git.linux.ibm.com/zfrobisher" target="_blank">LTC Github</a></li>
+            </ul> 
+          </div>
+        </nav>
 {% if not is_login %}
           <ul class="nav navbar-nav navbar-right">
             <li>
               <form action="/openid/login/" method="GET">
                 <input type="hidden" name="openid_identifier" value="https://w3-03.sso.ibm.com/FIM/openidsso">
-                <button type="submit" class="btn btn-primary" style="margin-right: 30px; margin-top:7px;margin-bottom:5px">Sign In</button>
+                <button class="btn btn-success" type="submit" class="btn btn-primary" style="margin-right: 30px; margin-top:7px;margin-bottom:5px">Sign In</button>
               </form> 
             </li>
           </ul>
@@ -38,14 +46,11 @@
             <li>
               <form action="/logout/" method="GET">
                 <input type="hidden" name="openid_identifier" value="https://w3-03.sso.ibm.com/FIM/openidsso">
-                <button type="submit" class="btn btn-primary"
-                style="margin-right: 30px; margin-top:7px;margin-bottom:5px">Sign Out</button>
+                <button class="btn btn-warning" type="submit" class="btn btn-primary" style="margin-right: 30px; margin-top:7px;margin-bottom:5px">Sign Out</button>
               </form> 
             </li>
           </ul>
 {% endif %}
-        </nav>
-      </div>
     </header>
 <main>
   <div class="container">
@@ -171,9 +176,9 @@
         </div>
       </div>
     </div>
-    <p>* You must re-reserve the same LPAR after exactly 4 hours.
-    <p>* "Cancel-->Reserve" will not add 4 more hours for you.
-    <p>* Please feel free to contact senwang@cn.ibm.com to get support.</p>
+    <div style="margin-top:50px">
+        <p>* Please feel free to contact senwang@cn.ibm.com to get support.</p>
+    </div>
   </div>
 </main>
 
