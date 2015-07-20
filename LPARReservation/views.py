@@ -14,6 +14,8 @@ def home(request):
 
     lpars = LPAR.objects.filter()
     for lpar in lpars:
+        if lpar.name[0:4] != 'LPAR':
+            continue
         t = str(lpar.reservation_time)[:19]
         t1 = time.time() - time.mktime(time.strptime(str(t),'%Y-%m-%d %H:%M:%S')) - 3600 * 8
         if (t1 >= 3600*4 and not lpar.available):
