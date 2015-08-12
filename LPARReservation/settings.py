@@ -114,5 +114,5 @@ LOGIN_URL = '/openid/login/'
 LOGIN_REDIRECT_URL = '/'
 
 OPENID_SSO_SERVER_URL = "https://w3-03.sso.ibm.com/FIM/openidsso"
-OPENID_TRUST_ROOT = "https://9.181.129.109"
+OPENID_TRUST_ROOT = "https://lpars.cn.ibm.cn"
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
